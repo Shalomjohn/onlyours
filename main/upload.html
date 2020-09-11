@@ -1,0 +1,267 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Strategy &mdash; Free Portfolio Template by Colorlib</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/aos.min.css">
+    <link rel="stylesheet" href="css/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/animsition.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@700&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #uploader {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 50%;
+            margin-bottom: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="js-animsition animsition" data-animsition-in-class="fade-in" data-animsition-out-class="fade-out">
+
+        <header class="templateux-navbar" data-aos="fade-down">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3 col-3">
+                        <div class="site-logo"><a style="font-family: 'Pacifico', cursive;" href="index.html"
+                                class="animsition-link">OnlyOurs</a></div>
+                    </div>
+                    <div class="col-sm-9 col-9 text-right">
+
+                        <button class="hamburger hamburger--spin toggle-menu ml-auto js-toggle-menu" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+
+                        <nav class="templateux-menu js-templateux-menu" role="navigation">
+                            <ul class="list-unstyled">
+                                <li class="d-md-none d-block active"><a href="index.html"
+                                        class="animsition-link">Home</a></li>
+                                <li><a href="index.html" class="animsition-link">All</a></li>
+                                <li><a href="index.html" class="animsition-link">Photos</a></li>
+                                <li><a href="index.html" class="animsition-link">Videos</a></li>
+                                <li class="active"><a id="uploadButton" href="#" class="animsition-link">Upload</a></li>
+                                <li><a href="index.html" class="animsition-link">Logout</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- END templateux-navbar -->
+        <section class="templateux-hero">
+            <div class="container">
+                <div class="row align-items-center justify-content-center intro">
+                    <div class="col-md-3" data-aos="fade-up">
+                        <h3>Choose Files:</h3>
+                        <!-- <a href="#next" class="go-down js-smoothscroll">efafdSA</a> -->
+                    </div>
+                    <div class="custom-file  col-sm-10 col-md-5 msb-3">
+                        <input accept="image/*,video/*" type="file" class="custom-file-input " id="file1" name="files" multiple="multiple">
+                        <label class="custom-file-label bg-light text-center " id="csvLabel" for="file1">Select
+                            files</label>
+                        <br><br>
+                        <p class="text-center"><a onclick="uploadFilesNow();" href="#"
+                                class="button button--red">Submit</a></p>
+                        <p class="text-center"><progress value="0" max="100" id="uploader"> 0%</progress></p>
+                    </div>
+                    <!-- <form action="" method="post" enctype="multipart/form-data">
+                        <span id="multipleFileLabel" style="display:none">Multiple </span><input type="file"
+                            name="files" multiple="multiple"><br />
+                        <input type="submit">
+                    </form> -->
+                </div>
+            </div>
+        </section>
+        <!-- END templateux-hero -->
+    </div>
+    </section>
+
+    </div>
+
+
+    <script src="js/scripts-all.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <!--===============================================================================================-->
+    <script>
+
+        var uploader = document.getElementById('uploader');
+        var uploadLinks = [];
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCwwpjIxuPhlW_PIVpOVbiQWja70KNYUp8",
+            authDomain: "onlyyours-8f634.firebaseapp.com",
+            databaseURL: "https://onlyyours-8f634.firebaseio.com",
+            projectId: "onlyyours-8f634",
+            storageBucket: "onlyyours-8f634.appspot.com",
+            messagingSenderId: "975933856881",
+            appId: "1:975933856881:web:a2205a94c9833f6a344fd0",
+            measurementId: "G-1FLYVDMRX5"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        this.database = firebase.database();
+        console.log(firebase.storage());
+        var userDisplayName = "Anonymous";
+        firebase.auth().onAuthStateChanged(function (user) {
+            console.log(user.displayName);
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                userDisplayName = displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                // ...
+                console.log(displayName);
+            } else {
+                document.location.href = "/";
+            }
+        });
+
+
+        //Listen for file selection
+        function supportMultiple() {
+            //do I support input type=file/multiple
+            var el = document.createElement("input");
+
+            return ("multiple" in el);
+        }
+
+        function init() {
+            if (supportMultiple()) {
+                document.querySelector("#multipleFileLabel").setAttribute("style", "");
+            }
+        }
+
+        function makeNewPost(user, fileLinks) {
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = date + ' ' + time;
+            if(userDisplayName == null) userDisplayName = 'Anonymous';
+            // A post entry.
+            var postData = {
+                user: userDisplayName,
+                fileLinks: fileLinks,
+                uploadTime: dateTime
+            };
+
+            // Get a key for a new Post.
+            var newPostKey = firebase.database().ref().child('posts').push().key;
+
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/posts/' + newPostKey] = postData;
+
+            return firebase.database().ref().update(updates, error => {
+                if (error) {
+                    alert("Data could not be saved. Try Again!" + error);
+                } else {
+                    document.location.href = "index.html";
+                }
+            });
+        }
+        function uploadFilesNow() {
+            //Listen for file selection
+            //Get files
+            console.log("HEYY IT ENTERS UPLOADFILESNOW");
+            var e = $('#file1')[0];
+            console.log(e);
+            var themPromises = [];
+            for (var i = 0; i < e.files.length; i++) {
+                var imageFile = e.files[i];
+
+                console.log(imageFile);
+
+                themPromises.push(uploadImageAsPromise(imageFile, i, e.files.length));
+            }
+            console.log(themPromises);
+            Promise.all(themPromises).then(function () {
+                console.log("I love my job");
+                console.log(uploadLinks);
+            });
+        }
+
+        //Handle waiting to upload each file using promise
+        function uploadImageAsPromise(imageFile, currentIteration, listLength) {
+            console.log(currentIteration);
+            console.log(listLength);
+            return new Promise(function (resolve, reject) {
+                var storageRef = firebase.storage().ref("media/" + imageFile.name);
+
+                //Upload file
+                var task = storageRef.put(imageFile);
+
+                //Update progress bar
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                        uploader.value = percentage;
+                    },
+                    function error(err) {
+                        console.log(err);
+                    },
+                    function complete() {
+                        task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                            console.log('File available at', downloadURL);
+                            console.log("Upload is complete");
+                            uploadLinks.push(downloadURL);
+                            // check if it's the last file to be uploaded
+                            if (listLength == currentIteration + 1) makeNewPost("Shalom", uploadLinks);
+                        });
+                    }
+                );
+            });
+        }
+    </script>
+
+</body>
+
+</html>
+<!-- 
+
+  How to complete this project:
+  Project:
+   -- Make a website where family members can upload pictures/videos
+   -- users should be able to tag the photos
+   -- there should be the possibility of selling membership so families can
+      buy.
+  Things to do:
+   -- get good signin/reg page --- DONE
+   -- choose good home screen template
+   -- work on backend
+ -->
