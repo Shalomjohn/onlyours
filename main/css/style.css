@@ -10,6 +10,13 @@ a { -webkit-transition: .3s all ease; -o-transition: .3s all ease; transition: .
 
 a:hover, a:active, a:focus { text-decoration: none; outline: none; }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: 100px;
+}
+
 .templateux-navbar { position: absolute; top: 0; left: 0; width: 100%; padding: 35px 0; z-index: 99999; }
 
 .templateux-navbar .container-fluid { max-width: 100%; }
