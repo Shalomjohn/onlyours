@@ -179,10 +179,27 @@
 				alert(errorMessage);
 			});
 		}
+
+		firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+            	console.log(user.displayName);
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                document.location.href = "home/index.html"
+                console.log(displayName);
+            } else {
+                // document.location.href = "/";
+            }
+        });
 		
 		// FirebaseUI config.
 		var uiConfig = {
-			signInSuccessUrl: 'main/index.html',
+			signInSuccessUrl: 'home/index.html',
 			signInOptions: [
 				// Leave the lines as is for the providers you want to offer your users.
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID,
