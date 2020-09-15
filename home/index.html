@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>OnlyOurs - Home</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="home/css/bootstrap.min.css">
@@ -22,141 +23,49 @@
             background-color: #152836
         } */
 
-        .demo-gallery>ul {
-            margin-bottom: 0;
+        ul.new-style {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 30px;
         }
 
-        .demo-gallery>ul>li {
-            float: left;
-            margin-bottom: 15px;
-            margin-right: 20px;
-            width: 200px;
+        li.new-style {
+            height: 40vh;
+            flex-grow: 1;
         }
 
-        .demo-gallery>ul>li a {
-            border: 3px solid #FFF;
-            border-radius: 3px;
-            display: block;
-            overflow: hidden;
-            position: relative;
-            float: left;
+        /* ul li.last {
+            flex-grow: 1;
+        } */
+
+        img {
+            max-height: 100%;
+            min-width: 50%;
+            object-fit: cover;
+            vertical-align: bottom;
         }
 
-        .demo-gallery>ul>li a>img {
-            -webkit-transition: -webkit-transform 0.15s ease 0s;
-            -moz-transition: -moz-transform 0.15s ease 0s;
-            -o-transition: -o-transform 0.15s ease 0s;
-            transition: transform 0.15s ease 0s;
-            -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-            height: 100%;
-            width: 100%;
-        }
+        @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+            ul.new-style {
+                flex-direction: row;
+                margin-left: 15px;
+            }
 
-        .demo-gallery>ul>li a:hover>img {
-            -webkit-transform: scale3d(1.1, 1.1, 1.1);
-            transform: scale3d(1.1, 1.1, 1.1);
-        }
+            li.new-style {
+                height: auto;
+                width: 100%;
+            }
 
-        .demo-gallery>ul>li a:hover .demo-gallery-poster>img {
-            opacity: 1;
-        }
-
-        .demo-gallery>ul>li a .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.1);
-            bottom: 0;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            -webkit-transition: background-color 0.15s ease 0s;
-            -o-transition: background-color 0.15s ease 0s;
-            transition: background-color 0.15s ease 0s;
-        }
-
-        .demo-gallery>ul>li a .demo-gallery-poster>img {
-            left: 50%;
-            margin-left: -10px;
-            margin-top: -10px;
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            -webkit-transition: opacity 0.3s ease 0s;
-            -o-transition: opacity 0.3s ease 0s;
-            transition: opacity 0.3s ease 0s;
-        }
-
-        .demo-gallery>ul>li a:hover .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .demo-gallery .justified-gallery>a>img {
-            -webkit-transition: -webkit-transform 0.15s ease 0s;
-            -moz-transition: -moz-transform 0.15s ease 0s;
-            -o-transition: -o-transform 0.15s ease 0s;
-            transition: transform 0.15s ease 0s;
-            -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-            height: 100%;
-            width: 100%;
-        }
-
-        .demo-gallery .justified-gallery>a:hover>img {
-            -webkit-transform: scale3d(1.1, 1.1, 1.1);
-            transform: scale3d(1.1, 1.1, 1.1);
-        }
-
-        .demo-gallery .justified-gallery>a:hover .demo-gallery-poster>img {
-            opacity: 1;
-        }
-
-        .demo-gallery .justified-gallery>a .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.1);
-            bottom: 0;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            -webkit-transition: background-color 0.15s ease 0s;
-            -o-transition: background-color 0.15s ease 0s;
-            transition: background-color 0.15s ease 0s;
-        }
-
-        .demo-gallery .justified-gallery>a .demo-gallery-poster>img {
-            left: 50%;
-            margin-left: -10px;
-            margin-top: -10px;
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            -webkit-transition: opacity 0.3s ease 0s;
-            -o-transition: opacity 0.3s ease 0s;
-            transition: opacity 0.3s ease 0s;
-        }
-
-        .demo-gallery .justified-gallery>a:hover .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .demo-gallery .video .demo-gallery-poster img {
-            height: 48px;
-            margin-left: -24px;
-            margin-top: -24px;
-            opacity: 0.8;
-            width: 48px;
-        }
-
-        .demo-gallery.dark>ul>li a {
-            border: 3px solid #04070a;
-        }
-
-        .home .demo-gallery {
-            padding-bottom: 80px;
+            img {
+                width: 100%;
+                max-height: 75vh;
+                min-width: 0;
+            }
         }
     </style>
 </head>
 
-<body class="home">
+<body>
 
     <div class="js-animsition animsition" data-animsition-in-class="fade-in" data-animsition-out-class="fade-out">
 
@@ -192,17 +101,19 @@
             </div>
         </header>
 
-
-        <section class="templateux-hero">
+        <br><br><br><br><br><br>
+        <div class="text-center">
+            <h3>Recents:</h3>
+        </div>
+        <!-- <section class="templateux-hero">
             <div class="container">
                 <div class="row align-items-center justify-content-center intro">
                     <div class="col-md-3" data-aos="fade-up">
                         <h3>Recents:</h3>
-                        <!-- <a href="#next" class="go-down js-smoothscroll">efafdSA</a> -->
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <div id="add-to-me" class="js-smoothscroll" data-aos="fade-up"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
@@ -297,12 +208,13 @@
 
         function newPost(userDisplayName, datePosted, mediaPosted, iterNum) {
             front = `
-      <div class="container-fluid">
-        <h4>Uploaded by: ${userDisplayName}</h4>
-        <h4>Upload Date: ${datePosted}</h4>
-        <br><br>
-        <div class="demo-gallery">
-          <ul id="lightgallery${iterNum}" class="list-unstyled row">`;
+            <br><br><br><br>
+      <div class="container" data-aos="fade-up">
+        <h5>Uploaded by: ${userDisplayName}</h5>
+        <h5>Upload Date: ${datePosted}</h5>
+        <br>
+        <div class="row">
+          <ul id="lightgallery${iterNum}" class="list-unstyled row new-style">`;
 
             var middle = "";
 
@@ -314,7 +226,7 @@
                 if (value.includes(".mp4")) {
                     middle = middle +
                         `
-                        <li class="col-xs-6 col-sm-4 col-md-3" data-aos="fade-up">
+                        <li class="new-style col">
                           <video width="320" height="240" controls>
                             <source src="${value}" type="video/mp4">
                           Your browser does not support the video tag.
@@ -323,11 +235,11 @@
                 } else {
                     middle = middle +
                         `
-            <li class="col-xs-6 col-sm-4 col-md-3"
+            <li class="new-style col" data-aos="fade-up"
                     data-responsive="${value} 375, ${value} 480, ${value} 800"
                     data-src="${value}">
                     <a href="${value}" onclick="scrollWin();return false;" target="_blank">
-                        <img class="img-responsive" src="${value}" alt="Thumb-3">
+                        <img style="width:7em; height:7em;" src="${value}" alt="Thumb-3">
                     </a>
                 </li>`;
                 }
@@ -335,23 +247,24 @@
             var ending = `
           </ul>
         </div>
-        <br><br>
+        </div>
+        <br>
         `;
             return front + middle;
         }
 
-        firebase.database().ref("posts/").orderByChild('uploadTime').on('value', function (snap) {
+        firebase.database().ref("posts/").on('value', function (snap) {
 
             var dataList = [];
 
             snap.forEach(function (childNodes) {
 
-                dataList.push(newPost(childNodes.val().user, childNodes.val().uploadTime, childNodes.val().fileLinks, iterNum));
+                dataList.unshift(newPost(childNodes.val().user, childNodes.val().uploadTime, childNodes.val().fileLinks, iterNum));
                 iterNum += 1;
 
             });
 
-            dataList.reverse().forEach(myFunction);
+            dataList.forEach(myFunction);
 
             function myFunction(value) {
                 document.getElementById("add-to-me").innerHTML += value;
@@ -372,27 +285,7 @@
                 }
             }
         }
-
-        $(window).bind("load", function () {
-            // code here
-            console.log(iterNum);
-            for (let i = 0; i < iterNum; i++) {
-                var idName = `lightgallery${i}`;
-                console.log(idName)
-                lightGallery(document.getElementById(idName));
-            }
-        });
         setInterval("func()", 1000);
-        $(function () {
-            // code here
-            console.log("HERE WE GO BRO");
-            console.log(iterNum);
-            for (let i = 0; i < iterNum; i++) {
-                var idName = `lightgallery${i}`;
-                console.log(idName)
-                lightGallery(document.getElementById(idName));
-            }
-        });
 
     </script>
 </body>
