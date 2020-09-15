@@ -233,6 +233,8 @@
         var iterNum = 0;
         var currentIterNum = 0;
         var itemsCompletelyLoaded = false;
+        var groupName = sessionStorage.getItem("onlyoursgroupname");
+        console.log("The group name is ", groupName);
 
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -335,7 +337,7 @@
             return front + middle;
         }
 
-        firebase.database().ref("posts/").orderByChild('uploadTime').on('value', function (snap) {
+        firebase.database().ref("posts/").orderByChild("groupName").equalTo(groupName).on('value', function (snap) {
 
             var dataList = [];
 

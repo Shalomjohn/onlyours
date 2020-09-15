@@ -144,7 +144,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
 
     <script>
-        lightGallery(document.getElementById('lightgallery'));
+        var groupName = sessionStorage.getItem("onlyoursgroupname");
+        console.log("The group name is ", groupName);
+
         var iterNum = 0;
         var currentIterNum = 0;
         var itemsCompletelyLoaded = false;
@@ -253,7 +255,7 @@
             return front + middle;
         }
 
-        firebase.database().ref("posts/").on('value', function (snap) {
+        firebase.database().ref("posts/").orderByChild("groupName").equalTo(groupName).on('value', function (snap) {
 
             var dataList = [];
 

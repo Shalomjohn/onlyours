@@ -117,6 +117,8 @@
 
         var uploader = document.getElementById('uploader');
         var uploadLinks = [];
+        var groupName = sessionStorage.getItem("onlyoursgroupname");
+        console.log("The group name is ", groupName);
 
         document.getElementsByTagName('input')[0].addEventListener('change', function (event) {
             var file = event.target.files[0];
@@ -269,7 +271,8 @@
             var postData = {
                 user: userDisplayName,
                 fileLinks: fileLinks,
-                uploadTime: dateTime
+                uploadTime: dateTime,
+                groupName: groupName
             };
 
             // Get a key for a new Post.
