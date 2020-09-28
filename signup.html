@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V18</title>
+	<title>OnlyOurs - Sign Up</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -34,9 +34,8 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-43">
-						<h1 style="font-family: 'Pacifico', cursive;" class="text-center p-b-43">OnlyOurs</h1>
-					</span>
+					<h1 style="font-family: 'Pacifico', cursive;" class="text-center p-b-43">OnlyOurs</h1>
+					<br><br>
 			
 
 					<div class="container-login100-form-btn">
@@ -80,13 +79,60 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
     <script src="js/main.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+
+	<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+	<!-- Add Firebase products that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+
     <script>
+        var groupName = sessionStorage.getItem("onlyoursgroupname");
+        if (groupName != null) document.location.href = "home";
+
         function createGroup(){
             document.location.href = "create-group.html";
         }
         function joinGroup(){
             document.location.href = "login.html";
         }
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyCwwpjIxuPhlW_PIVpOVbiQWja70KNYUp8",
+			authDomain: "onlyyours-8f634.firebaseapp.com",
+			databaseURL: "https://onlyyours-8f634.firebaseio.com",
+			projectId: "onlyyours-8f634",
+			storageBucket: "onlyyours-8f634.appspot.com",
+			messagingSenderId: "975933856881",
+			appId: "1:975933856881:web:a2205a94c9833f6a344fd0",
+			measurementId: "G-1FLYVDMRX5"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		firebase.auth().onAuthStateChanged(function (user) {
+			console.log(user.displayName);
+			if (user) {
+				// User is signed in.
+				var displayName = user.displayName;
+				userEmail = user.email;
+				var emailVerified = user.emailVerified;
+				var photoURL = user.photoURL;
+				var isAnonymous = user.isAnonymous;
+				var uid = user.uid;
+				var providerData = user.providerData;
+				// ...
+				console.log(displayName);
+			} else {
+				document.location.href = "/";
+			}
+		});
+
     </script>
 
 </body>

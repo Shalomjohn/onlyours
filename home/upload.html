@@ -25,6 +25,50 @@
             margin-bottom: 10px;
 
         }
+
+        /* body {
+            background-color: #152836
+        } */
+
+        ul.new-style {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 30px;
+        }
+
+        li.new-style {
+            height: 40vh;
+            flex-grow: 1;
+        }
+
+        /* ul li.last {
+            flex-grow: 1;
+        } */
+
+        img {
+            max-height: 100%;
+            min-width: 50%;
+            object-fit: cover;
+            vertical-align: bottom;
+        }
+
+        @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+            ul.new-style {
+                flex-direction: row;
+                margin-left: 15px;
+            }
+
+            li.new-style {
+                height: auto;
+                width: 100%;
+            }
+
+            img {
+                width: 100%;
+                max-height: 75vh;
+                min-width: 0;
+            }
+        }
     </style>
 </head>
 
@@ -64,35 +108,44 @@
 
         <!-- END templateux-navbar -->
         <br><br><br><br><br><br>
-        <section class="templateux-hero">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-3" data-aos="fade-up">
-                        <h3>Choose Files:</h3><br>
-                        <!-- <a href="#next" class="go-down js-smoothscroll">efafdSA</a> -->
-                    </div>
-                    <div class="text-center custom-file col-sm-10 col-md-5 msb-3">
-                        <input id="file1" type="file" accept="image/*,video/*" multiple/>
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-3" data-aos="fade-up">
+                    <h3>Choose Files:</h3><br>
+                    <!-- <a href="#next" class="go-down js-smoothscroll">efafdSA</a> -->
+                </div>
+                <div class="text-center custom-file col-sm-10 col-md-5 msb-3">
+                    <input id="file1" type="file" accept="image/*,video/*" multiple />
+                    <br><br>
+                    <p class="text-center"><a onclick="uploadFilesNow();" href="#" class="button button--red">Submit</a>
+                    </p>
+                    <p class="text-center"><progress value="0" max="100" id="uploader"> 0%</progress></p>
+                </div>
 
-                        <div></div>
-                        <br><br>
-                        <p class="text-center"><a onclick="uploadFilesNow();" href="#"
-                                class="button button--red">Submit</a></p>
-                        <p class="text-center"><progress value="0" max="100" id="uploader"> 0%</progress></p>
-                    </div>
-                    <!-- <form action="" method="post" enctype="multipart/form-data">
+                <div id="theChosenOne" class="container"></div>
+                <!-- <form action="" method="post" enctype="multipart/form-data">
                         <span id="multipleFileLabel" style="display:none">Multiple </span><input type="file"
                             name="files" multiple="multiple"><br />
                         <input type="submit">
                     </form> -->
-                </div>
             </div>
-        </section>
+        </div>
         <!-- END templateux-hero -->
     </div>
     </section>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+    <script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
+    <script src="lightgallery/js/lg-rotate.js"></script>
+
+
 
 
     <script src="js/scripts-all.js"></script>
@@ -118,59 +171,71 @@
         var uploader = document.getElementById('uploader');
         var uploadLinks = [];
         var groupName = sessionStorage.getItem("onlyoursgroupname");
+        if (groupName == null) document.location.href = "/";
         console.log("The group name is ", groupName);
 
-        document.getElementsByTagName('input')[0].addEventListener('change', function (event) {
-            var file = event.target.files[0];
-            var fileReader = new FileReader();
-            if (file.type.match('image')) {
-                fileReader.onload = function () {
-                    var img = document.createElement('img');
-                    img.src = fileReader.result;
-                    document.getElementsByTagName('div')[0].appendChild(img);
-                };
-                fileReader.readAsDataURL(file);
-            } else {
-                fileReader.onload = function () {
-                    var blob = new Blob([fileReader.result], { type: file.type });
-                    var url = URL.createObjectURL(blob);
-                    var video = document.createElement('video');
-                    var timeupdate = function () {
-                        if (snapImage()) {
-                            video.removeEventListener('timeupdate', timeupdate);
-                            video.pause();
-                        }
-                    };
-                    video.addEventListener('loadeddata', function () {
-                        if (snapImage()) {
-                            video.removeEventListener('timeupdate', timeupdate);
-                        }
-                    });
-                    var snapImage = function () {
-                        var canvas = document.createElement('canvas');
-                        canvas.width = video.videoWidth;
-                        canvas.height = video.videoHeight;
-                        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-                        var image = canvas.toDataURL();
-                        var success = image.length > 100000;
-                        if (success) {
-                            var img = document.createElement('img');
-                            img.src = image;
-                            document.getElementsByTagName('div')[0].appendChild(img);
-                            URL.revokeObjectURL(url);
-                        }
-                        return success;
-                    };
-                    video.addEventListener('timeupdate', timeupdate);
-                    video.preload = 'metadata';
-                    video.src = url;
-                    // Load video in Safari / IE11
-                    video.muted = true;
-                    video.playsInline = true;
-                    video.play();
-                };
-                fileReader.readAsArrayBuffer(file);
+        var imagesLoaded = false;
+
+
+        function scrollWin() {
+            window.scrollBy(0, 100);
+        }
+
+
+        function newPost(mediaPosted) {
+            front = `
+            <br><br><br><br>
+      <div class="container">
+        <br>
+        <div class="row demo-gallery">
+          <ul id="lightgallery0" class="list-unstyled row new-style">`;
+
+            var middle = "";
+
+            for (let i = 0; i < mediaPosted.length; i++) {
+                displayThumbnails(mediaPosted[i], i);
             }
+
+            function displayThumbnails(value, iteration) {
+                var fileUrl = URL.createObjectURL(value);
+                console.log(value.name);
+                if ((value.name.includes(".mp4"))) {
+                    middle = middle +
+                        `
+                        <li class="new-style col">
+                          <video width="150" height="150" controls>
+                            <source src="${fileUrl}" type="video/mp4">
+                          Your browser does not support the video tag.
+                          </video>
+                    </li>`;
+                } else {
+                    middle = middle +
+                        `
+            <li class="new-style col"
+                    data-responsive="${fileUrl} 375, ${fileUrl} 480, ${fileUrl} 800"
+                    data-src="${fileUrl}">
+                    <a href="${fileUrl}" onclick="scrollWin();return false;" target="_blank">
+                        <img style="width:7em; height:7em;" src="${fileUrl}" alt="Thumb-3">
+                    </a>
+                </li>`;
+                }
+            }
+            var ending = `
+          </ul>
+        </div>
+        </div>
+        <br><br><br><br>
+        `;
+            return front + middle + ending;
+        }
+
+
+        document.getElementsByTagName('input')[0].addEventListener('change', function (event) {
+            var mediaList = [];
+            var chosenDiv = document.getElementById("theChosenOne");
+            var previewContent = newPost(event.target.files);
+            chosenDiv.innerHTML = previewContent;
+            imagesLoaded = true;
         });
 
         // Your web app's Firebase configuration
@@ -184,6 +249,7 @@
             appId: "1:975933856881:web:a2205a94c9833f6a344fd0",
             measurementId: "G-1FLYVDMRX5"
         };
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
@@ -232,47 +298,75 @@
             }
         }
 
-        // function previewImages() {
+        function compressImage(e) {
+            if (!HTMLCanvasElement.prototype.toBlob) {
+                Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
+                    value: function (callback, type, quality) {
+                        var dataURL = this.toDataURL(type, quality).split(',')[1];
+                        setTimeout(function () {
+                            var binStr = atob(dataURL),
+                                len = binStr.length,
+                                arr = new Uint8Array(len);
+                            for (var i = 0; i < len; i++) {
+                                arr[i] = binStr.charCodeAt(i);
+                            }
+                            callback(new Blob([arr], { type: type || 'image/png' }));
+                        });
+                    }
+                });
+            }
+            const width = 500;
+            const height = 300;
+            const fileName = e.target.files[0].name;
+            const lastModifiedDate = e.target.files[0].lastModifiedDate;
+            var newFileObject;
+            const reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+            reader.onload = event => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const elem = document.createElement('canvas');
+                    elem.width = width;
+                    elem.height = height;
+                    const ctx = elem.getContext('2d');
+                    // img.width and img.height will contain the original dimensions
+                    ctx.drawImage(img, 0, 0, width, height);
+                    ctx.canvas.toBlob((blob) => {
+                        const file = new File([blob], fileName, {
+                            type: 'image/jpeg',
+                            lastModified: lastModifiedDate
+                        });
+                    }, 'image/jpeg', 1);
+                    newFileObject = file;
+                },
+                    reader.onerror = error => console.log(error);
+            };
+            return newFileObject;
+        }
 
-        //     var $preview = $('#preview').empty();
-        //     if (this.files) $.each(this.files, readAndPreview);
-
-        //     function readAndPreview(i, file) {
-
-        //         // if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
-        //         //     return alert(file.name + " is not an image");
-        //         // } // else...
-
-        //         var reader = new FileReader();
-
-        //         $(reader).on("load", function () {
-        //             if (file.name.contains(".mp4")) {
-        //                 $preview.append($("<video/>", { src: this.result, height: 100 }));
-        //             } else {
-        //                 $preview.append($("<img/>", { src: this.result, height: 100 }));
-        //             }
-        //         });
-
-        //         reader.readAsDataURL(file);
-
-        //     }
-
-        // }
-
-        // $('#file1').on("change", previewImages);
-
-        function makeNewPost(user, fileLinks) {
+        function makeNewPost(fileLinks) {
             var today = new Date();
             var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             var dateTime = date + ' ' + time;
             if (userDisplayName == null) userDisplayName = 'Anonymous';
+            var linksOnly = [];
+            var datesOnly = [];
+            for (var i = 0; i < fileLinks.length; i++) {
+                linksOnly.push(fileLinks[i][0]);
+                datesOnly.push(fileLinks[i][1]);
+            }
+            datesOnly.sort();
+
             // A post entry.
             var postData = {
                 user: userDisplayName,
-                fileLinks: fileLinks,
+                fileLinks: linksOnly,
                 uploadTime: dateTime,
-                groupName: groupName
+                groupName: groupName,
+                timeModified: datesOnly[0],
+                timeModifiedString: datesOnly[0].toString()
             };
 
             // Get a key for a new Post.
@@ -290,6 +384,7 @@
                 }
             });
         }
+
         function uploadFilesNow() {
             //Listen for file selection
             //Get files
@@ -310,6 +405,16 @@
                 console.log(uploadLinks);
             });
         }
+
+        // function func() {
+        //     if ( imagesLoaded ) {
+        //         var idName = `lightgallery0`;
+        //         console.log(idName)
+        //         lightGallery(document.getElementById(idName));
+        //         imagesLoaded = false;
+        //     }
+        // }
+        // setInterval("func()", 500);
 
         //Handle waiting to upload each file using promise
         function uploadImageAsPromise(imageFile, currentIteration, listLength) {
@@ -334,9 +439,9 @@
                         task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                             console.log('File available at', downloadURL);
                             console.log("Upload is complete");
-                            uploadLinks.push(downloadURL);
+                            uploadLinks.push([downloadURL, imageFile.lastModifiedDate]);
                             // check if it's the last file to be uploaded
-                            if (listLength == currentIteration + 1) makeNewPost("Shalom", uploadLinks);
+                            if (listLength == currentIteration + 1) makeNewPost(uploadLinks);
                         });
                     }
                 );

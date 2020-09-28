@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Login V18</title>
+	<title>OnlyOurs - Create Group</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -37,9 +37,7 @@
 			<div class="wrap-login100">
 				<form id="some-form" class="login100-form validate-form">
 
-					<span class="login100-form-title p-b-43">
-						<h1 style="font-family: 'Pacifico', cursive;" class="text-center p-b-43">OnlyOurs</h1>
-					</span>
+					<h1 style="font-family: 'Pacifico', cursive;" class="text-center p-b-43">OnlyOurs</h1>
 
 					<h5>Create Group</h5><br>
 
@@ -110,6 +108,8 @@
 	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
 
 	<script>
+        var groupName = sessionStorage.getItem("onlyoursgroupname");
+        if (groupName != null) document.location.href = "home";
 		var userEmail = "";
 		var nameExists = false;
 		// Your web app's Firebase configuration
@@ -141,12 +141,12 @@
 				// ...
 				console.log(displayName);
 			} else {
-				// document.location.href = "/";
+				document.location.href = "/";
 			}
 		});
 
 
-		function makeNewPost(userEmail, groupID, groupPassword) {
+		function makeNewGroup(userEmail, groupID, groupPassword) {
 			var today = new Date();
 			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -196,16 +196,20 @@
 				console.log("Group ID: ", groupID);
 				console.log("Group Password: ", groupPassword);
 				console.log(dataList.length);
-				if (dataList.length == 0) {
-					if (userEmail == "") {
-						alert("You're signed in as Anonymous. You need to login with your Google Account.");
+				if (groupID == "" || groupPassword == ""){
+
+				}else{
+					if (dataList.length == 0) {
+						if (userEmail == "") {
+							alert("You're signed in as Anonymous. You need to login with your Google Account.");
+						} else {
+							console.log(dataList.length);
+							console.log(nameExists);
+							makeNewGroup(userEmail, groupID, groupPassword);
+						}
 					} else {
-						console.log(dataList.length);
-						console.log(nameExists);
-						makeNewPost(userEmail, groupID, groupPassword);
+						alert("GroupID already taken!");
 					}
-				} else {
-					alert("GroupID already taken!");
 				}
 			});
 

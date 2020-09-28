@@ -23,137 +23,138 @@
             background-color: #152836
         } */
 
-        /* .demo-gallery>ul {
-            margin-bottom: 0;
+
+        ul.new-style {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 30px;
         }
 
-        .demo-gallery>ul>li {
-            float: left;
-            margin-bottom: 15px;
-            margin-right: 20px;
-            width: 200px;
+        li.new-style {
+            height: 40vh;
+            flex-grow: 1;
         }
 
-        .demo-gallery>ul>li a {
-            border: 3px solid #FFF;
-            border-radius: 3px;
-            display: block;
-            overflow: hidden;
-            position: relative;
-            float: left;
-        }
-
-        .demo-gallery>ul>li a>img {
-            -webkit-transition: -webkit-transform 0.15s ease 0s;
-            -moz-transition: -moz-transform 0.15s ease 0s;
-            -o-transition: -o-transform 0.15s ease 0s;
-            transition: transform 0.15s ease 0s;
-            -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-            height: 100%;
-            width: 100%;
-        }
-
-        .demo-gallery>ul>li a:hover>img {
-            -webkit-transform: scale3d(1.1, 1.1, 1.1);
-            transform: scale3d(1.1, 1.1, 1.1);
-        }
-
-        .demo-gallery>ul>li a:hover .demo-gallery-poster>img {
-            opacity: 1;
-        }
-
-        .demo-gallery>ul>li a .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.1);
-            bottom: 0;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            -webkit-transition: background-color 0.15s ease 0s;
-            -o-transition: background-color 0.15s ease 0s;
-            transition: background-color 0.15s ease 0s;
-        }
-
-        .demo-gallery>ul>li a .demo-gallery-poster>img {
-            left: 50%;
-            margin-left: -10px;
-            margin-top: -10px;
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            -webkit-transition: opacity 0.3s ease 0s;
-            -o-transition: opacity 0.3s ease 0s;
-            transition: opacity 0.3s ease 0s;
-        }
-
-        .demo-gallery>ul>li a:hover .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .demo-gallery .justified-gallery>a>img {
-            -webkit-transition: -webkit-transform 0.15s ease 0s;
-            -moz-transition: -moz-transform 0.15s ease 0s;
-            -o-transition: -o-transform 0.15s ease 0s;
-            transition: transform 0.15s ease 0s;
-            -webkit-transform: scale3d(1, 1, 1);
-            transform: scale3d(1, 1, 1);
-            height: 100%;
-            width: 100%;
-        }
-
-        .demo-gallery .justified-gallery>a:hover>img {
-            -webkit-transform: scale3d(1.1, 1.1, 1.1);
-            transform: scale3d(1.1, 1.1, 1.1);
-        }
-
-        .demo-gallery .justified-gallery>a:hover .demo-gallery-poster>img {
-            opacity: 1;
-        }
-
-        .demo-gallery .justified-gallery>a .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.1);
-            bottom: 0;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            -webkit-transition: background-color 0.15s ease 0s;
-            -o-transition: background-color 0.15s ease 0s;
-            transition: background-color 0.15s ease 0s;
-        }
-
-        .demo-gallery .justified-gallery>a .demo-gallery-poster>img {
-            left: 50%;
-            margin-left: -10px;
-            margin-top: -10px;
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            -webkit-transition: opacity 0.3s ease 0s;
-            -o-transition: opacity 0.3s ease 0s;
-            transition: opacity 0.3s ease 0s;
-        }
-
-        .demo-gallery .justified-gallery>a:hover .demo-gallery-poster {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .demo-gallery .video .demo-gallery-poster img {
-            height: 48px;
-            margin-left: -24px;
-            margin-top: -24px;
-            opacity: 0.8;
-            width: 48px;
-        }
-
-        .demo-gallery.dark>ul>li a {
-            border: 3px solid #04070a;
-        }
-
-        .home .demo-gallery {
-            padding-bottom: 80px;
+        /* ul li.last {
+            flex-grow: 1;
         } */
+        ul.rig {
+            list-style: none;
+            font-size: 0px;
+            margin-left: -2.5%;
+            /* should match li left margin */
+        }
+
+        ul.rig li {
+            display: inline-block;
+            padding: 10px;
+            margin: 0 0 2.5% 2.5%;
+            background: #fff;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            font-size: 1rem;
+            vertical-align: top;
+            box-shadow: 0 0 5px #ddd;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        ul.rig li a img {
+            /* max-width: 100%;
+            height: auto; */
+            margin: 0 0 10px;
+        }
+
+        ul.rig li h3 {
+            margin: 0 0 5px;
+        }
+
+        ul.rig li p {
+            font-size: .9em;
+            line-height: 1.5em;
+            color: #999;
+        }
+
+        /* class for 2 columns */
+        ul.rig.columns-2 li {
+            width: 47.5%;
+            /* this value + 2.5 should = 50% */
+        }
+
+        /* class for 3 columns */
+        ul.rig.columns-3 li {
+            width: 30.83%;
+            /* this value + 2.5 should = 33% */
+        }
+
+        /* class for 4 columns */
+        ul.rig.columns-4 li {
+            width: 22.5%;
+            /* this value + 2.5 should = 25% */
+        }
+
+        @media (max-width: 480px) {
+            ul.grid-nav li {
+                display: block;
+                margin: 0 0 5px;
+            }
+
+            ul.grid-nav li a {
+                display: block;
+            }
+
+            ul.rig {
+                margin-left: 0;
+            }
+
+            ul.rig li {
+                width: 100% !important;
+                /* over-ride all li styles */
+                margin: 0 0 20px;
+            }
+
+            img {
+                width: 7em;
+                height: 7em;
+                min-width: 0;
+            }
+
+            video {
+                width: 7em;
+                height: 7em;
+                min-width: 0;
+            }
+        }
+
+        ul.new-style {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 30px;
+        }
+
+        li.new-style {
+            height: 40vh;
+            flex-grow: 1;
+        }
+
+        /* ul li.last {
+            flex-grow: 1;
+        } */
+
+        img {
+            height: 15em;
+            width: 15em;
+            object-fit: cover;
+            vertical-align: bottom;
+        }
+
+        video {
+            height: 15em;
+            width: 15em;
+            object-fit: cover;
+            vertical-align: bottom;
+        }
     </style>
 </head>
 
@@ -197,8 +198,8 @@
         <br><br><br><br><br><br>
         <div class="text-center">
             <h3>Recents:</h3>
+            <br><br><br><br>
         </div>
-        <br><br><br><br>
         <div id="add-to-me" class="js-smoothscroll" data-aos="fade-up"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
@@ -229,11 +230,11 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
 
     <script>
-        lightGallery(document.getElementById('lightgallery'));
         var iterNum = 0;
         var currentIterNum = 0;
         var itemsCompletelyLoaded = false;
         var groupName = sessionStorage.getItem("onlyoursgroupname");
+        if (groupName == null) document.location.href = "/";
         console.log("The group name is ", groupName);
 
         // Your web app's Firebase configuration
@@ -293,21 +294,25 @@
             });
         }
 
-        function newPost(userDisplayName, datePosted, mediaPosted, iterNum) {
-            var videos = 0
+        function newPost(userDisplayName, datePostedFull, mediaPosted, iterNum) {
+
+            var n = datePostedFull.indexOf("GMT");
+            var datePosted = datePostedFull.toString().substring(0, n);
+            var photos = 0
             for (let i = 0; i < mediaPosted.length; i++) {
-                if (mediaPosted[i].includes(".mp4")) {
-                    videos += 1;
+                if (!(mediaPosted[i].includes(".mp4"))) {
+                    photos += 1;
                 }
             }
-            if (videos > 0) return "";
+            if (photos < 1) return "";
             front = `
-      <div class="container-fluid">
-        <h4>Uploaded by: ${userDisplayName}</h4>
-        <h4>Upload Date: ${datePosted}</h4>
-        <br>
-        <div class="demo-gallery">
-          <ul id="lightgallery${iterNum}" class="list-unstyled row">`;
+            <br>
+            <div class="container" data-aos="fade-up">
+                <b>Uploaded by: ${userDisplayName}</b><br>
+                <b>Date Created: ${datePosted}</b>
+                <br><br>
+                <div>
+                <ul id="lightgallery${iterNum}" class="rig columns-4">`;
 
             var middle = "";
 
@@ -320,11 +325,11 @@
                 } else {
                     middle = middle +
                         `
-            <li class="col-xs-6 col-sm-4 col-md-3"
+            <li class="new-style col" data-aos="fade-up"
                     data-responsive="${value} 375, ${value} 480, ${value} 800"
                     data-src="${value}">
                     <a href="${value}" onclick="scrollWin();return false;" target="_blank">
-                        <img style="width:10em; height:10em" class="img-responsive" src="${value}" alt="Thumb-3">
+                        <img src="${value}" alt="Thumb-3">
                     </a>
                 </li>`;
                 }
@@ -332,23 +337,40 @@
             var ending = `
           </ul>
         </div>
-        <br><br>
+        </div>
+        <br>
         `;
-            return front + middle;
+            return front + middle + ending;
+        }
+
+        var dataList = [];
+        var dataValues = [];
+
+        function isItNull(childNodeValue) {
+            // return childNodeValue.uploadTime;
+            if (childNodeValue.timeModifiedString == null) {
+                return childNodeValue.uploadTime;
+            } else {
+                return childNodeValue.timeModifiedString;
+            }
         }
 
         firebase.database().ref("posts/").orderByChild("groupName").equalTo(groupName).on('value', function (snap) {
 
-            var dataList = [];
-
             snap.forEach(function (childNodes) {
 
-                dataList.push(newPost(childNodes.val().user, childNodes.val().uploadTime, childNodes.val().fileLinks, iterNum));
+                dataValues.push([childNodes.val().user, isItNull(childNodes.val()), childNodes.val().fileLinks, iterNum]);
                 iterNum += 1;
 
             });
 
-            dataList.reverse().forEach(myFunction);
+            dataValues.sort(function (lhs, rhs) { return lhs < rhs ? 1 : lhs > rhs ? -1 : 0; });
+            dataValues.forEach(myOtherFunction);
+            dataList.forEach(myFunction);
+
+            function myOtherFunction(value) {
+                dataList.push(newPost(value[0], value[1], value[2], value[3]))
+            }
 
             function myFunction(value) {
                 document.getElementById("add-to-me").innerHTML += value;

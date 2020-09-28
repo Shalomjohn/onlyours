@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Login V18</title>
+	<title>OnlyOurs Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -37,9 +37,7 @@
 			<div class="wrap-login100">
 				<form id="some-form" class="login100-form validate-form">
 
-					<span class="login100-form-title p-b-43">
-						<h1 style="font-family: 'Pacifico', cursive;" class="text-center p-b-43">OnlyOurs</h1>
-					</span>
+					<h1 style="font-family: 'Pacifico', cursive;" class="text-center p-b-43">OnlyOurs</h1>
 
 					<h5>Login to Group</h5><br>
 
@@ -120,6 +118,8 @@
 	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
 
 	<script>
+        var groupName = sessionStorage.getItem("onlyoursgroupname");
+        if (groupName != null) document.location.href = "home";
 		var userEmail = "";
 		// Your web app's Firebase configuration
 		var firebaseConfig = {
@@ -150,7 +150,7 @@
 				// ...
 				console.log(displayName);
 			} else {
-				// document.location.href = "/";
+				document.location.href = "/";
 			}
 		});
 
@@ -181,10 +181,10 @@
 						sessionStorage.setItem("onlyoursgroupname", groupID)
 						document.location.href = "home/index.html"
 					} else {
-						console.log("Password don't match");
+						alert("Incorrect password. Try again!");
 					}
 				} else {
-					alert("GroupID already taken!");
+					alert("Group does not exist. Try again!");
 				}
 			});
 
